@@ -3,6 +3,8 @@
 
 import { createRouter } from "@/lib/create-app";
 import { createRoute, z } from "@hono/zod-openapi";
+// * means “grab every named export from the module.” 
+// as HttpStatusCodes means: bundle them all into a single object called HttpStatusCodes.
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import jsonContent from "stoker/openapi/helpers/json-content";
 
@@ -11,7 +13,7 @@ import jsonContent from "stoker/openapi/helpers/json-content";
 // Handler (the function that actually runs on an incoming request).
 const router = createRouter()
   .openapi(
-    // documentation
+    // route definition
     createRoute({
       tags: ['Index'], // tags are used to group routes in the scalar UI
       method: 'get',

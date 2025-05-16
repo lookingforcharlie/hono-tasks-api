@@ -1,6 +1,6 @@
 // pass in hono app 
 // add /doc endpoint
-
+// add /reference endpoint
 import { Scalar } from '@scalar/hono-api-reference';
 import packageJSON from '../../package.json';
 import { AppOpenAPI } from "./types";
@@ -15,7 +15,7 @@ export default function configureOpenAPI (app: AppOpenAPI) {
     },    
   })
 
-  // get api reference interface
+  // get api reference interface: scalar
   app.get('/reference', Scalar({
     theme: 'laserwave', 
     layout: 'classic', 
