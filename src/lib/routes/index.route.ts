@@ -1,12 +1,13 @@
 // export a hono api instance has a specific documented route
 // create a stand along hono api instance to be mounted on top of this app
 
-import { createRouter } from "@/lib/create-app";
-import { createRoute, z } from "@hono/zod-openapi";
-// * means “grab every named export from the module.” 
+import { createRoute, z } from '@hono/zod-openapi'
+// * means “grab every named export from the module.”
 // as HttpStatusCodes means: bundle them all into a single object called HttpStatusCodes.
-import * as HttpStatusCodes from "stoker/http-status-codes";
-import jsonContent from "stoker/openapi/helpers/json-content";
+import * as HttpStatusCodes from 'stoker/http-status-codes'
+import jsonContent from 'stoker/openapi/helpers/json-content'
+
+import { createRouter } from '@/lib/create-app'
 
 // .openapi(...) takes two arguments:
 // Route metadata (for generating docs and validating),
@@ -26,17 +27,17 @@ const router = createRouter()
           z.object({
             message: z.string(),
           }),
-          'Task API Index'
-          )
+          'Task API Index',
+        ),
       },
     }),
 
     // handler: implement the logic
     (c) => {
       return c.json({
-        message: "task api"
-    }, HttpStatusCodes.OK)
-    }
+        message: 'task api',
+      }, HttpStatusCodes.OK)
+    },
   )
 
 export default router
@@ -54,7 +55,7 @@ export default router
 //             'application/json': {
 //               schema: z.object({
 //                 message: z.string(),
-//               }), 
+//               }),
 //             },
 //           },
 //           description: 'Task API Index'

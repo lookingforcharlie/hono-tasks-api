@@ -24,7 +24,23 @@
 ## [zod](https://zod.dev/?id=table-of-contents): provide run-time type validation
 
 ## [Scalar for Hono](https://www.npmjs.com/package/@scalar/hono-api-reference)
+
 - Alternative for Swagger UI
+
+## [Drizzle ORM - SqLite -Turso](https://orm.drizzle.team/docs/tutorials/drizzle-with-turso)
+
+  ```
+  pnpm add drizzle-orm @libsql/client
+  pnpm add -D drizzle-kit
+  ```
+- The lib Sql client that Turso provide can actually talk to a file on your local machine.
+- So when we are running in Dev mode, we can talk to a sqlite database living in the same folder
+- When we deploy, we can create an Turso instance and then set our environment variable to be that endpoint
+
+## LibSQL
+
+- LibSQL is a fork of SQLite that offers a bit more functionality compared to standard SQLite
+- libSQL can connect to both SQLite files and Turso remote databases
 
 ## tsconfig.json
 
@@ -39,3 +55,5 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
   ```
+
+## [CJ's Repo](https://github.com/w3cj/hono-open-api-starter)

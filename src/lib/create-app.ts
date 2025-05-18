@@ -2,12 +2,11 @@
 // because hono is agnostic to runtime
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { notFound, onError, serveEmojiFavicon } from 'stoker/middlewares'
+import { defaultHook } from 'stoker/openapi'
 
 import type { CustomAppBindings } from '@/lib/types'
 
 import { pinoLogger } from '@/middlewares/pino-logger'
-import { defaultHook } from 'stoker/openapi'
-
 
 // create a stand alone router instance with any middlewares
 export function createRouter() {
