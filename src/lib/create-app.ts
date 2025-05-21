@@ -12,8 +12,9 @@ import { pinoLogger } from '@/middlewares/pino-logger'
 export function createRouter() {
   // with strict set to false, /error and /error/ will be treated as the same path
   // defaultHook: return validation errors as a json response
+  // defaultHook runs if there's ever a validation error from an openapi route handler and it's not handled by the route handler itself
   return new OpenAPIHono<CustomAppBindings>({
-    strict: false,
+    strict: false, // localhost:9999/error and localhost:9999/error/ will be treated as the same path
     defaultHook, // Default hook source code : https://github.com/w3cj/stoker/blob/main/src/openapi/default-hook.ts
   })
 }

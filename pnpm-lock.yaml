@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@asteasolutions/zod-to-openapi':
+        specifier: ^7.3.0
+        version: 7.3.0(zod@3.24.4)
       '@hono/node-server':
         specifier: ^1.14.1
         version: 1.14.1(hono@4.7.9)
@@ -29,6 +32,9 @@ importers:
       drizzle-orm:
         specifier: ^0.43.1
         version: 0.43.1(@libsql/client@0.15.6)
+      drizzle-zod:
+        specifier: ^0.7.1
+        version: 0.7.1(drizzle-orm@0.43.1(@libsql/client@0.15.6))(zod@3.24.4)
       hono:
         specifier: ^4.7.9
         version: 4.7.9
@@ -1211,6 +1217,12 @@ packages:
       sqlite3:
         optional: true
 
+  drizzle-zod@0.7.1:
+    resolution: {integrity: sha512-nZzALOdz44/AL2U005UlmMqaQ1qe5JfanvLujiTHiiT8+vZJTBFhj3pY4Vk+L6UWyKFfNmLhk602Hn4kCTynKQ==}
+    peerDependencies:
+      drizzle-orm: '>=0.36.0'
+      zod: '>=3.0.0'
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
@@ -1779,7 +1791,6 @@ packages:
 
   libsql@0.5.10:
     resolution: {integrity: sha512-lQu5RLqDLFuo6H5SuR3CnEstGVph77Jd8lm3fdW64p6tUjOC0X8Z9PlfAdZYxWyirYLH9uwcEZUrABsNKYwOiQ==}
-    cpu: [x64, arm64, wasm32, arm]
     os: [darwin, linux, win32]
 
   local-pkg@1.1.1:
@@ -3472,6 +3483,11 @@ snapshots:
   drizzle-orm@0.43.1(@libsql/client@0.15.6):
     optionalDependencies:
       '@libsql/client': 0.15.6
+
+  drizzle-zod@0.7.1(drizzle-orm@0.43.1(@libsql/client@0.15.6))(zod@3.24.4):
+    dependencies:
+      drizzle-orm: 0.43.1(@libsql/client@0.15.6)
+      zod: 3.24.4
 
   dunder-proto@1.0.1:
     dependencies:

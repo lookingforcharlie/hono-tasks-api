@@ -1,6 +1,20 @@
-# Hono Backend Project
+# Hono Backend Project: [CJ's Repo](https://github.com/w3cj/hono-open-api-starter)
 
 - A pure json api
+
+## tsconfig.json
+
+- import with an alias, no need to do relative imports
+  ```
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+  ```
+- we can do "import app from './app';" when
+  ```
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+  ```
 
 ## Install Eslint: [@antfu/eslint-config:](https://github.com/antfu/eslint-config)
 
@@ -25,14 +39,19 @@
 
 ## [Scalar for Hono](https://www.npmjs.com/package/@scalar/hono-api-reference)
 
+## [Zod to OpenAPI](https://www.npmjs.com/package/@asteasolutions/zod-to-openapi)
+
+- We need this library for using jsonContentOneOf helper function from stoker to turn anyOf to oneOf
+
 - Alternative for Swagger UI
 
 ## [Drizzle ORM - SqLite -Turso](https://orm.drizzle.team/docs/tutorials/drizzle-with-turso)
 
-  ```
-  pnpm add drizzle-orm @libsql/client
-  pnpm add -D drizzle-kit
-  ```
+```
+pnpm add drizzle-orm @libsql/client
+pnpm add -D drizzle-kit
+```
+
 - The lib Sql client that Turso provide can actually talk to a file on your local machine.
 - So when we are running in Dev mode, we can talk to a sqlite database living in the same folder
 - When we deploy, we can create an Turso instance and then set our environment variable to be that endpoint
@@ -42,18 +61,7 @@
 - LibSQL is a fork of SQLite that offers a bit more functionality compared to standard SQLite
 - libSQL can connect to both SQLite files and Turso remote databases
 
-## tsconfig.json
+## [Drizzle zod](https://orm.drizzle.team/docs/zod)
 
-- import with an alias, no need to do relative imports
-  ```
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-  ```
-- we can do "import app from './app';" when
-  ```
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-  ```
-
-## [CJ's Repo](https://github.com/w3cj/hono-open-api-starter)
+- drizzle-zod is a plugin for Drizzle ORM that allows you to generate Zod schemas from Drizzle ORM schemas.
+- pnpm add drizzle-zod

@@ -4,6 +4,10 @@ import { drizzle } from 'drizzle-orm/libsql'
 
 import env from '@/env'
 
+// Imports all exported members from the ./schema file, and Bundles them into a single object called schema
+// since schema.ts exports the tasks table definition, after this import you can access it as: schema.tasks
+import * as schema from './schema'
+
 // libSQL can connect to both SQLite files and Turso remote databases
 // LibSQL is a fork of SQLite that offers a bit more functionality compared to standard SQLite
 
@@ -15,6 +19,8 @@ const client = createClient({
   authToken: env.DATABASE_AUTH_TOKEN,
 })
 
-const db = drizzle(client)
+// create a drizzle db instance
+// let drizzle know about the schema, so that we can use the schema to query the database
+const db = drizzle(client, { schema })
 
 export default db
