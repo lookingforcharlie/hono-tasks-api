@@ -115,7 +115,32 @@ export const patchById = createRoute({
     ),
     // ? how to use code generation
   },
+})
 
+// create a delete route for deleting a task by id
+export const deleteById = createRoute({
+  tags,
+  path: '/tasks/{id}',
+  method: 'delete',
+  request: {
+    params: IdParamsSchema, // validate the params
+    // we don't expect any request body for delete request
+  },
+  // when delete successfully, we won't response with the deleted task from database
+  // we will response with a message of 204
+  responses: {
+    [HttpStatusCodes.NO_CONTENT]: {
+      description: 'The task deleted',
+    },
+    [HttpStatusCodes.NOT_FOUND]: jsonContent(
+      notFoundSchema,
+      'The task not found',
+    ),
+    [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(IdParamsSchema),
+      'Invalid ID error',
+    ),
+  },
 })
 
 // This is the type that defines the specific route, we need to use it when we're defining our handler
@@ -123,3 +148,4 @@ export type ListRoute = typeof list
 export type CreateRoute = typeof create
 export type GetOneByIdRoute = typeof getOneById
 export type PatchByIdRoute = typeof patchById
+export type DeleteByIdRoute = typeof deleteById

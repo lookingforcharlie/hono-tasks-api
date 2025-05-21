@@ -9,6 +9,8 @@ const router = createRouter()
   .openapi(routes.create, handlers.create)
   .openapi(routes.getOneById, handlers.getOneById)
   .openapi(routes.patchById, handlers.patchById)
+  .openapi(routes.deleteById, handlers.deleteById)
+
 export default router
 
 // This is the index file, it's the entry point for the tasks routes

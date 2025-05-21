@@ -1,5 +1,7 @@
 # Hono Backend Project: [CJ's Repo](https://github.com/w3cj/hono-open-api-starter)
 
+- [Inspired by](https://www.youtube.com/watch?v=sNh9PoM9sUE)
+
 - A pure json api
 
 ## tsconfig.json

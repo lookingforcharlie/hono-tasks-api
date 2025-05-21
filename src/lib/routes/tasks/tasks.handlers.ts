@@ -6,7 +6,7 @@ import db from '@/db'
 import { tasks } from '@/db/schema'
 
 import type { AppRouteHandler } from '../../types'
-import type { CreateRoute, GetOneByIdRoute, ListRoute, PatchByIdRoute } from './tasks.routes'
+import type { CreateRoute, DeleteByIdRoute, GetOneByIdRoute, ListRoute, PatchByIdRoute } from './tasks.routes'
 
 // Create route handler
 // ListRoute is the RouteConfig created in the tasks.routes.ts file
@@ -50,11 +50,11 @@ export const getOneById: AppRouteHandler<GetOneByIdRoute> = async (c) => {
 
 // create handler for updating/patching a task by id
 export const patchById: AppRouteHandler<PatchByIdRoute> = async (c) => {
-  const params = c.req.valid('param')
+  const params = c.req.valid('param') // id is a string, even if it's a number in the database
   const updates = c.req.valid('json') // you can just send name or done or both
 
   // eq is a helper function from drizzle-orm, pass in the columns we are comparing and the value we are comparing it to
-  // it will return a list of updated rows, even if it's only one row
+  // .returning() send back the full row(s) that were updated: return a list of updated rows, even if it's only one row
   const [updatedTask] = await db.update(tasks).set(updates).where(eq(tasks.id, params.id)).returning()
 
   if (!updatedTask) {
@@ -62,4 +62,23 @@ export const patchById: AppRouteHandler<PatchByIdRoute> = async (c) => {
   }
 
   return c.json(updatedTask, HttpStatusCodes.OK)
+}
+
+// create handler for deleting a task by id
+export const deleteById: AppRouteHandler<DeleteByIdRoute> = async (c) => {
+  // .valid() async is available only when you've attached a Zod schema to your route's request definition using createRoute() in tasks.routes.ts file
+  const params = c.req.valid('param') // safely returns parsed and validated URL params and gives you { id: string }
+  // ResultSet shape here from sqlite driver if task is not found: 
+  // { columns: [],
+  // columnTypes: [],
+  // rows: [],
+  // rowsAffected: 0,
+  // lastInsertRowid: 0n } 
+  const result = await db.delete(tasks).where(eq(tasks.id, params.id)) // safely returns parsed and validated request body (JSON) and gives you { name?: string, done?: boolean }
+  console.log('result returned from db.delete()', result)
+
+  if (result.rowsAffected === 0) {
+    return c.json({ message: HttpStatusPhrases.NOT_FOUND }, HttpStatusCodes.NOT_FOUND)
+  }
+  return c.body(null, HttpStatusCodes.NO_CONTENT) // 204
 }
