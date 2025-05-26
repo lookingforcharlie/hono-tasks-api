@@ -1,8 +1,8 @@
-// we will response with an array of tasks
+// we're defining the OpenAPI/Swagger documentation for all the routes in this file
 
 import { createRoute, z } from '@hono/zod-openapi'
 import * as HttpStatusCodes from 'stoker/http-status-codes'
-import { jsonContentOneOf, jsonContentRequired } from 'stoker/openapi/helpers'
+import { jsonContentRequired } from 'stoker/openapi/helpers'
 import jsonContent from 'stoker/openapi/helpers/json-content'
 import { createErrorSchema, IdParamsSchema } from 'stoker/openapi/schemas'
 
@@ -97,25 +97,29 @@ export const patchById = createRoute({
       notFoundSchema,
       'The task not found',
     ),
+
+    [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(patchTaskSchema).or(createErrorSchema(IdParamsSchema)),
+      'The validation error',
+    ),
     // jsonContent helper function accepts a zod union type
     // anyOf in JSON leads to a lot of problem in code generation
     // so we want oneOf instead of anyOf
     // here is jsonContentOneOf helper function kicks in
-    // [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
-    //   createErrorSchema(patchTaskSchema).or(createErrorSchema(IdParamsSchema)),
-    //   'The validation error',
+
+    // [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContentOneOf(
+    //   // jsonContent helper function accepts a zod union type
+    //   [
+    //     createErrorSchema(patchTaskSchema), // validation error in the body
+    //     createErrorSchema(IdParamsSchema), // validation error in the url params
+    //   ],
+    //   'The validation error(s)',
     // ),
-    [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContentOneOf(
-      // jsonContent helper function accepts a zod union type
-      [
-        createErrorSchema(patchTaskSchema), // validation error in the body
-        createErrorSchema(IdParamsSchema), // validation error in the url params
-      ],
-      'The validation error(s)',
-    ),
-    // ? how to use code generation
   },
 })
+// Eventually, we still use jsonContent instead of jsonContentOneOf, because jsonContentOneOf make TS inference error when doing patch test case
+// TS inference error disappeared if we use jsonContent helper function.
+// I think it's kinda cutting corners, is there any better way to fix it? having both jsonContentOneOf and TS inference?
 
 // create a delete route for deleting a task by id
 export const deleteById = createRoute({

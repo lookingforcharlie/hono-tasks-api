@@ -1,10 +1,13 @@
 // extract the app into a separate file to separate it from the node server
 // because hono is agnostic to runtime
+
+import type { Schema } from 'hono'
+
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { notFound, onError, serveEmojiFavicon } from 'stoker/middlewares'
 import { defaultHook } from 'stoker/openapi'
 
-import type { CustomAppBindings } from '@/lib/types'
+import type { AppOpenAPI, CustomAppBindings } from '@/lib/types'
 
 import { pinoLogger } from '@/middlewares/pino-logger'
 
@@ -31,3 +34,17 @@ export default function createApp() {
 
   return app
 }
+
+// create a app dedicated for testing with the router mounted on it, now we can get the response from the router when testing
+export function createTestApp<S extends Schema>(router: AppOpenAPI<S>) {
+  // now testApp is inferred as Hono<CustomAppBindings, S>
+  const testApp = createApp().route('/', router)
+  return testApp
+}
+
+// this version doesn't return a full typed app, but a router, because TS inference works better with chaining
+// export function createTestApp<S extends Schema>(router: AppOpenAPI<S>) {
+//   const testApp = createApp()
+//   testApp.route('/', router) // mount the router on the test app
+//   return testApp
+// }

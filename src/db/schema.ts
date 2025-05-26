@@ -42,3 +42,13 @@ export const insertTaskSchema = createInsertSchema(tasks, {
 // One of the difference between patch request and create request is all of the fields are optional in patch request
 // zod partial() method is used to make all of the fields optional
 export const patchTaskSchema = insertTaskSchema.partial()
+
+// export const patchTaskSchema = insertTaskSchema.partial().superRefine((data, ctx) => {
+//   if (Object.keys(data).length === 0) {
+//     ctx.addIssue({
+//       code: 'custom',
+//       message: ZOD_ERROR_MESSAGES.NO_UPDATES,
+//       params: { code: ZOD_ERROR_CODES.INVALID_UPDATES },
+//     })
+//   }
+// })

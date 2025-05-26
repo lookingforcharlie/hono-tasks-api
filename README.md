@@ -67,3 +67,14 @@ pnpm add -D drizzle-kit
 
 - drizzle-zod is a plugin for Drizzle ORM that allows you to generate Zod schemas from Drizzle ORM schemas.
 - pnpm add drizzle-zod
+
+## [Hono Test](https://hono.dev/docs/guides/testing)
+
+- Hono has request built-in method, doesn't need a separate library: router.request('url')
+- not like Express, you need superTest library 
+
+## vitest
+
+- pn i -D vitest
+- pn i -D @vitest/coverage-v8
+- "test": "vitest" in package.json: search the whole directory for any file that has the word 'test' inside of it
