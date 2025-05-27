@@ -35,7 +35,7 @@ const router = createRouter()
     // handler: implement the logic
     (c) => {
       return c.json({
-        message: 'task api',
+        message: 'task api index route',
       }, HttpStatusCodes.OK)
     },
   )

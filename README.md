@@ -17,6 +17,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
   ```
+- Vercel doesn't support "paths": { "@/_": ["./src/_"] }
 
 ## Install Eslint: [@antfu/eslint-config:](https://github.com/antfu/eslint-config)
 
@@ -71,10 +72,12 @@ pnpm add -D drizzle-kit
 ## [Hono Test](https://hono.dev/docs/guides/testing)
 
 - Hono has request built-in method, doesn't need a separate library: router.request('url')
-- not like Express, you need superTest library 
+- not like Express, you need superTest library
 
 ## vitest
 
 - pn i -D vitest
 - pn i -D @vitest/coverage-v8
 - "test": "vitest" in package.json: search the whole directory for any file that has the word 'test' inside of it
+
+## Generate my tasks API SDK

@@ -6,7 +6,7 @@ import db from '@/db'
 import { tasks } from '@/db/schema'
 import { ZOD_ERROR_CODES, ZOD_ERROR_MESSAGES } from '@/lib/constants'
 
-import type { AppRouteHandler } from '../../types'
+import type { AppRouteHandler } from '../../lib/types'
 import type { CreateRoute, DeleteByIdRoute, GetOneByIdRoute, ListRoute, PatchByIdRoute } from './tasks.routes'
 
 // Create route handler
