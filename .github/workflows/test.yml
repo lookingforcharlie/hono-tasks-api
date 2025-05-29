@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: 20.x
           # Cache node modules to speed up the workflow
-          # cache: 'pnpm'
-          # cache-dependency-path: '**/pnpm-lock.json'
+          cache: 'pnpm'
+          cache-dependency-path: '**/pnpm-lock.json'
 
       - name: Setup PNPM@10
         uses: pnpm/action-setup@v2
