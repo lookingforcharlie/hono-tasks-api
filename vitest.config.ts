@@ -19,7 +19,7 @@ export default defineConfig({
   // need to specify the alias inside vitest.config.ts to use the alias in the test files
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
-}) 
+})

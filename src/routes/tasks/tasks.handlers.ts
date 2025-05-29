@@ -97,7 +97,6 @@ export const deleteById: AppRouteHandler<DeleteByIdRoute> = async (c) => {
   // rowsAffected: 0,
   // lastInsertRowid: 0n }
   const result = await db.delete(tasks).where(eq(tasks.id, params.id)) // safely returns parsed and validated request body (JSON) and gives you { name?: string, done?: boolean }
-  console.log('result returned from db.delete()', result)
 
   if (result.rowsAffected === 0) {
     return c.json({ message: HttpStatusPhrases.NOT_FOUND }, HttpStatusCodes.NOT_FOUND)
