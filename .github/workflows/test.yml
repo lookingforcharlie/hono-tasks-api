@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     # If you want to run on multiple OS, you can use a matrix strategy
 
+    env:
+      NODE_ENV: test
+      DATABASE_URL: file:test.db
+      LOG_LEVEL: silent
+
     steps:
       - uses: actions/checkout@v4 # using v4 for the latest features
 
