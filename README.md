@@ -36,6 +36,12 @@
   pnpm dev
   ```
 
+- Run drizzle studio
+
+  ```
+  pnpm drizzle-kit studio
+  ```
+
 - Run Lint
 
   ```
