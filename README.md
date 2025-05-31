@@ -12,10 +12,16 @@
   npx degit lookingforcharlie/hono-tasks-api my-hono-tasks-api
   ```
 
-- Create .env file and update file:example.db in .env to your preference
+- Create .env file and update file:example.db in .env to file:dev.db
 
   ```
   cp .env.example .env
+  ```
+
+- Create .env.test file and update file:example.db in .env to file:test.db
+
+  ```
+  cp .env.example .env.test
   ```
 
 - Install dependencies
