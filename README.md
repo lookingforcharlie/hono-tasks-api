@@ -6,47 +6,47 @@
 
 ## Setup
 
-Clone this template without git history ( You might need to install degit )
+- Clone this template without git history ( You might need to install degit )
 
-```
-npx degit lookingforcharlie/hono-tasks-api my-hono-tasks-api
-```
+  ```
+  npx degit lookingforcharlie/hono-tasks-api my-hono-tasks-api
+  ```
 
-Create .env file and update file:example.db in .env to your preference
+- Create .env file and update file:example.db in .env to your preference
 
-```
-cp .env.example .env
-```
+  ```
+  cp .env.example .env
+  ```
 
-Install dependencies
+- Install dependencies
 
-```
-pnpm install
-```
+  ```
+  pnpm install
+  ```
 
-Create sqlite db / push schema
+- Create sqlite db / push schema
 
-```
-pnpm drizzle-kit push
-```
+  ```
+  pnpm drizzle-kit push
+  ```
 
-Run App
+- Run App
 
-```
-pnpm dev
-```
+  ```
+  pnpm dev
+  ```
 
-Run Lint
+- Run Lint
 
-```
-pnpm lint
-```
+  ```
+  pnpm lint
+  ```
 
-Run Test
+- Run Test
 
-```
-pnpm test
-```
+  ```
+  pnpm test
+  ```
 
 ## tsconfig.json
 
