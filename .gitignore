@@ -30,8 +30,12 @@ lerna-debug.log*
 
 # db files
 dev.db
+test.db
 
 # test
 coverage/
 coverage-*.json
 .nyc_output/
+
+.vercel
+dist
