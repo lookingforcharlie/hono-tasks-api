@@ -48,6 +48,18 @@
   pnpm test
   ```
 
+## Endpoints
+
+| Path               | Description              |
+| ------------------ | ------------------------ |
+| GET /doc           | Open API Specification   |
+| GET /reference     | Scalar API Documentation |
+| GET /tasks         | List all tasks           |
+| POST /tasks        | Create a task            |
+| GET /tasks/{id}    | Get one task by id       |
+| PATCH /tasks/{id}  | Patch one task by id     |
+| DELETE /tasks/{id} | Delete one task by id    |
+
 ## tsconfig.json
 
 - import with an alias, no need to do relative imports
