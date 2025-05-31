@@ -4,6 +4,50 @@
 
 - A pure json api
 
+## Setup
+
+Clone this template without git history ( You might need to install degit )
+
+```
+npx degit lookingforcharlie/hono-tasks-api my-hono-tasks-api
+```
+
+Create .env file and update file:example.db in .env to your preference
+
+```
+cp .env.example .env
+```
+
+Install dependencies
+
+```
+pnpm install
+```
+
+Create sqlite db / push schema
+
+```
+pnpm drizzle-kit push
+```
+
+Run App
+
+```
+pnpm dev
+```
+
+Run Lint
+
+```
+pnpm lint
+```
+
+Run Test
+
+```
+pnpm test
+```
+
 ## tsconfig.json
 
 - import with an alias, no need to do relative imports
