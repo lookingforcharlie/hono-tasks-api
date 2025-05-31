@@ -1,0 +1,51 @@
+name: Build Lint & Test
+
+# Events like push, pull_request and etc that trigger the workflow
+on:
+  push:
+    branches: [master, 'feature/**', 'bug/**']
+  pull_request:
+    branches: [master]
+
+# Consider using a matrix strategy if building a library of a package with multiple versions
+jobs:
+  build-lint-test:
+    runs-on: ubuntu-latest
+    # If you want to run on multiple OS, you can use a matrix strategy
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: file:test.db
+      LOG_LEVEL: silent
+
+    steps:
+      - uses: actions/checkout@v4 # using v4 for the latest features
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4 # download and cache Node.js
+        with:
+          node-version: 20.x
+          # Cache node modules to speed up the workflow
+          # Can't cache pnpm here, don't know why
+          # cache: 'pnpm'
+          # cache-dependency-path: '**/pnpm-lock.json'
+
+      - name: Setup PNPM@10
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Install dependencies
+        # treat pnpm-lock.yaml as the single source of truth for the dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint code
+        run: pnpm run lint
+        # optionally fail on warnings:
+        # run: npm run lint -- --max-warnings=0
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Run tests
+        run: pnpm test
